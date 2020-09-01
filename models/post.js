@@ -28,11 +28,11 @@ const postSchema = new mongoose.Schema(
       },
     ],
     postedBy: {
-      type: ObjectId,
-      ref: "User",
+      type: ObjectId, // Recogeremos los datos del usuario registrado
+      ref: "User", // Esta referencia nos permite linkear postModel a userModel via ObjectId,
     },
   },
   { timestamps: true }
 );
 
-mongoose.model("Post", postSchema);
+mongoose.model("Post", postSchema); // Atribuimos a postSchema el nombre Post

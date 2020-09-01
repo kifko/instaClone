@@ -1,34 +1,33 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const requireLogin = require('../middleware/requireLogin')
+const requireLogin = require("../middleware/requireLogin") // Importamos requireLogin para proteger las rutas. Estaba pálido por las comillas simples..
 const Post = mongoose.model("Post")
 
 
-router.get('/allpost', requireLogin, (req, res) => {
-    Post.find()
-        .populate("postedBy", "_id name")
+router.get('/allpost', requireLogin, (req, res) => { // Para mostrar los posts, con el callback req,res
+    Post.find() // Hacemos uso de postModel para buscar todos los posts
+        .populate("postedBy", "_id name") // Populate para expandir el id, y mostrar aquello que necesitemos de postedBy. _id y name en este caso
         .populate("comments.postedBy", "_id name")
-        .sort('-createdAt') //para mostrar los posts de más recientes a más antiguos
-        .then(posts => {
+        .sort('-createdAt') // Para mostrar los posts más recientes primero
+        .then(posts => { // Si recibimos todos los posts, 
             res.json({
                 posts
             })
         })
-        .catch(err => {
+        .catch(err => { // Recogeremos si hubiera algún error
             console.log(err)
         })
 })
 router.get('/getsubpost', requireLogin, (req, res) => {
-    // inetntando algo así: if postedBy (spreading) in following, return POST
     Post.find({
             postedBy: {
-                $in: req.user.following
+                $in: req.user.following //$in buscará "user" en el array de following, requerido para el postedBy
             }
-        }) //$in para buscar en un array (el de following en este caso)
-        .populate("postedBy", "_id name")
-        .populate("comments.postedBy", "_id name")
-        .sort('-createdAt')
+        })
+        .populate("postedBy", "_id name") // incluímos (poblamos) el _id y el nombre a postedBy
+        .populate("comments.postedBy", "_id name") // incluímos (poblamos) en el comentario de postedBy, el _id y el nombre
+        .sort('-createdAt') // Para mostrar los posts más recientes primero
         .then(posts => {
             res.json({
                 posts
@@ -44,20 +43,20 @@ router.post('/createpost', requireLogin, (req, res) => {
         title,
         body,
         pic
-    } = req.body
-    if (!title || !body || !pic) {
+    } = req.body // Requerimos del body los datos en esta constante
+    if (!title || !body || !pic) { // Si faltara alguno de los datos, enviamos el error
         res.status(402).json({
             error: "Please add all the fields"
         })
     }
-    req.user.password = undefined
-    const post = new Post({
+    req.user.password = undefined // Requerimos la password disponible en req.user y la ocultamos via undefined
+    const post = new Post({ // Requerimos Post de postModel de mongoose postSchema
         title,
         body,
         photo: pic,
         postedBy: req.user
     })
-    post.save().then(result => {
+    post.save().then(result => { // Si todo ha ido bien, guardamos el post y enviamos resultado 
             res.json({
                 post: result
             })

@@ -1,3 +1,4 @@
+// Home es la primera screen de components para importarlas después en App.js
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../App";
 import { Link } from "react-router-dom";
@@ -125,7 +126,7 @@ const Home = () => {
   return (
     <div className="home">
       {data.map((item) => {
-        console.log(item);
+        // console.log(item);
         return (
           <div className="card home-card" key={item._id}>
             <h5 style={{ padding: "6px" }}>
@@ -140,7 +141,7 @@ const Home = () => {
               </Link>
 
               {item.postedBy._id == state._id && (
-                <i
+                <i // Este i tag nos sirve para mostrar el icono que nos permitirá borrar nuestro post
                   className="material-icons"
                   style={{
                     float: "right",
@@ -152,6 +153,7 @@ const Home = () => {
               )}
             </h5>
             <div className="card-image">
+              Aquí mostraremos las imágenes de todos los posts
               <img src={item.photo} />
             </div>
             <div className="card-content">

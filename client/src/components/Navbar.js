@@ -1,6 +1,7 @@
+//Navbar es la página inicial frontEnd de nuestro proyecto. Todo empieza aquí en el frontend
 import React, { useContext, useRef, useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { UserContext } from "../App";
+import { Link, useHistory } from "react-router-dom"; // Hacemos uso de Link para evitar que se refresque el servidor cada vez que cambiamos de ruta. Se substituye "a" por "link", y se deberá cambiar "href" por "to" en los links
+import App, { UserContext } from "../App";
 import M from "materialize-css";
 
 const NavBar = () => {
@@ -24,6 +25,7 @@ const NavBar = () => {
             search
           </i>
         </li>,
+        // Todos estos links redireccionan hacia las rutas de App.js importados de su respectiva screen
         <li key="2">
           <Link to="/profile">Profile</Link>
         </li>,
@@ -37,9 +39,9 @@ const NavBar = () => {
           <button
             className="btn #c62828 red darken-3"
             onClick={() => {
-              localStorage.clear();
+              localStorage.clear(); // Borramos lo almacenado en el contenedor local
               dispatch({ type: "CLEAR" });
-              history.push("/signin");
+              history.push("/signin"); //Salimos a la ventana de inicio /signin
             }}
           >
             Signout

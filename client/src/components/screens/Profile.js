@@ -1,3 +1,4 @@
+// Aquí configuramos la página del perfil
 import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../App";
 
@@ -63,7 +64,7 @@ const Profile = () => {
     <div style={{ maxWidth: "550px", margin: "0px auto" }}>
       <div
         style={{
-          margin: "18px 0px",
+          margin: "18px 0px", // 18px top & bottom, 0px left & right
           borderBottom: "1px solid grey",
         }}
       >
@@ -73,6 +74,7 @@ const Profile = () => {
             justifyContent: "space-around",
           }}
         >
+          {/* Primer div para la imagen del perfil */}
           <div>
             <img
               style={{ width: "160px", height: "160px", borderRadius: "80px" }}
@@ -80,19 +82,22 @@ const Profile = () => {
             />
           </div>
           <div>
-            {/* visualizamos el nombre en el perfil */}
+            {/* visualizamos el nombre de usuario */}
             <h4>{state ? state.name : "loading"}</h4>
-            {/* visualizamos el email en perfil  */}
+            {/* visualizamos el email */}
             <h5>{state ? state.email : "loading"}</h5>
-            <div
+            <div // Le damos estilo para separar post - followers - followings
               style={{
                 display: "flex",
                 justifyContent: "space-between",
                 width: "108%",
               }}
             >
+              {/* Contador de posts */}
               <h6>{mypics.length} posts </h6>
+              {/* contador de followers */}
               <h6>{state ? state.followers.length : "0"} followers</h6>
+              {/* contador de followings */}
               <h6>{state ? state.following.length : "0"} following</h6>
             </div>
           </div>

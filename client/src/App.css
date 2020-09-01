@@ -2,12 +2,15 @@
   margin: 0;
 }
 
+/* Importamos de fonts.Google la fuente para nuestro logo en brand-logo */
 @import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
 
+/* Le pasamos !importatnt para evitar que materialize sobreescriva "a" al color por defecto. Debemos importar App.css en App.js */
 a {
   color: black !important;
 }
 
+/* Es aquí donde añadimos fonts.Google a .brand-logo y h2 para cambiar la fuente al logo en Navbar.js y al h2 de signin.js */
 .brand-logo,
 h2 {
   font-family: 'Grand Hotel', cursive;
@@ -24,6 +27,7 @@ h2 {
   margin: 10px auto;
 }
 
+/* Label underline focus color from materializecss. Añadiremos input-field a su padre en Signin.js. !important para evitar ser substituido */
 .input-field input[type=text]:focus {
   border-bottom: 1px solid rgb(75, 181, 243) !important;
   box-shadow: 0 1px 0 0 rgb(75, 181, 243) !important;
@@ -44,11 +48,17 @@ h2 {
   width: 30%;
 }
 
+/* homeScreen */
 .home-card {
   max-width: 500px;
+  /* máxima anchura 500px */
   height: max-content;
+  /* altura, máximo posible */
   margin: 26px auto;
+  /* margen 26px top bottom, auto izquierda derecha */
 }
+
+
 
 .collection-item {
   width: 100%;

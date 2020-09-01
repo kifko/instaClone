@@ -75,4 +75,4 @@ const userSchema = new mongoose.Schema({
   //     type: String,
   // },
 });
-mongoose.model("User", userSchema);
+mongoose.model("User", userSchema); // Atribuimos a userSchema el nombre User

@@ -1,6 +1,9 @@
+// Ventana con el contenido de /createpost
 import React, { useState, useEffect } from "react";
 import M from "materialize-css";
 import { useHistory } from "react-router-dom";
+import App from "../../App";
+import NavBar from "../Navbar";
 
 const CreatePost = () => {
   const history = useHistory();
@@ -62,10 +65,10 @@ const CreatePost = () => {
     <div
       className="card input-field"
       style={{
-        margin: "30px auto",
-        maxWidth: "500px",
-        padding: "20px",
-        textAlign: "center",
+        margin: "30px auto", // Margen entre la tarjeta y el header
+        maxWidth: "500px", // Máxima anchura
+        padding: "20px", // Separación entre lineas
+        textAlign: "center", // Texto alineado al centro
       }}
     >
       <input
@@ -80,8 +83,10 @@ const CreatePost = () => {
         value={body}
         onChange={(e) => setBody(e.target.value)}
       />
+      {/* Importamos de materializecss text-imput.html */}
       <div className="file-field input-field">
         <div className="btn #64b5f6 blue darken-1">
+          {/* Este spam nos permite seleccionar una imagen de nuestro dispositivo */}
           <span>Upload Image</span>
           <input type="file" onChange={(e) => setImage(e.target.files[0])} />
         </div>
@@ -99,4 +104,5 @@ const CreatePost = () => {
   );
 };
 
+// Para incluirlo después en la ruta de App.js y en el link de NavBar
 export default CreatePost;

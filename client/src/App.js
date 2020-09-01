@@ -2,14 +2,14 @@ import React, { useEffect, createContext, useReducer, useContext } from "react";
 import NavBar from "./components/Navbar";
 import "./App.css";
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
-import Home from "./components/screens/Home";
+import Home from "./components/screens/Home"; // Importamos todas las Screens
 import Signup from "./components/screens/Signup";
 import Signin from "./components/screens/Signin";
 import Profile from "./components/screens/Profile";
 import CreatePost from "./components/screens/CreatePost";
 import { reducer, initialState } from "./reducers/userReducer";
 import UserProfile from "./components/screens/UserProfile";
-import SubscribesUserPosts from "./components/screens/SubscribedUserPosts"; //Importamos
+import SubscribesUserPosts from "./components/screens/SubscribedUserPosts";
 import Reset from "./components/screens/Reset";
 import NewPassword from "./components/screens/Newpassword";
 
@@ -29,11 +29,12 @@ const Routing = () => {
   }, []);
   return (
     <Switch>
-      {/* Debemos indicar "exact" en "Home" para que no aparezca 
-      la ruta de "home" en todas las rutas que comiencen por "/" (en todas..) */}
+      {/* Indicamos "exact path" para que la ruta "home"
+       no aparezca en todas las rutas que comiencen por "/" (básicamente en todas..) */}
       <Route exact path="/">
         <Home />
       </Route>
+      {/* Todas estas rutas son llamadas por los likns en Navbar */}
       <Route path="/signup">
         <Signup />
       </Route>

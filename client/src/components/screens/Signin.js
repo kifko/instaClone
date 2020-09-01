@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom"; //Importamos Link para poder usarlo en la redirección entre signin, signup y reset
 import { UserContext } from "../../App";
 import M from "materialize-css";
 
@@ -48,6 +48,7 @@ const Signin = () => {
       });
   };
   return (
+    //Importamos cards.html de materialize. Hay que cambiar class por className
     <div className="mycard">
       <div className="card auth-card input-field">
         <h2>InstaClone</h2>
@@ -63,15 +64,18 @@ const Signin = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {/* Importamos buttons.html de materializecss. Elegimos color tambien en materializecss */}
         <button
           className="btn waves-effect waves-light #64b5f6 blue darken-1"
           onClick={() => PostData()}
         >
           Signin
         </button>
+        {/* Añadimos el h5 para redireccionar a /signup en caso de que no sea aún usuario */}
         <h5>
           <Link to="/signup">Don't you have an account ?</Link>
         </h5>
+        {/* Añadimos el h5 para redireccionar a /reset en caso de que haya olvidado la contraseña */}
         <h6>
           <Link to="/reset">Forgot the password ?</Link>
         </h6>

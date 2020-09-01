@@ -19,11 +19,11 @@ mongoose.connection.on("error", (err) => {
     console.log("err connecting", err);
 });
 
-require("./models/user");
-require("./models/post");
+require("./models/user"); // Después de establecer la conexión, requerimos userModel via mongoose
+require("./models/post"); // Después de establecer la conexión, requerimos postModel via mongoose
 
-app.use(express.json());
-app.use(require("./routes/auth"));
+app.use(express.json()); //Kind of middleweare. Recieve all the incomming request and pass it to json. Debe ir al principio. Parsear..?
+app.use(require("./routes/auth")); //Registramos auth para poder hashear y tokenear
 app.use(require("./routes/post"));
 app.use(require("./routes/user"));
 
